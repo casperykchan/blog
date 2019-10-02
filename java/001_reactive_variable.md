@@ -1,6 +1,6 @@
 # Reactive Variables with Relations
 
-Below is a ordinary function call in Java:
+Below is an ordinary function call in Java:
 
 ```
 BiFunction<Integer, Integer, Integer> add = (a, b) -> a + b;
