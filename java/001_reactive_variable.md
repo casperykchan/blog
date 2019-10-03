@@ -284,9 +284,9 @@ HKD 264.00
 
 ## Conclusion
 
-Reactive variable comes with great power, but it also needs great responsibility in order to use it correctly.
+Reactive variable has great power, but it also comes with great responsibility in order to use it correctly.
 Since the variables are mutable, they are not thread-safe and extra cautions must be taken.
-It is not a good idea to use it as class fields or the it becomes magic and can be difficult to keep track of
-the state changes, making it harder to debug or support.
+It is not a good idea to use it as class fields or it becomes magic and can be difficult to keep track of state changes,
+making it harder to debug or support.
 
 Still, it's a lot of fun playing with reactive variables!
