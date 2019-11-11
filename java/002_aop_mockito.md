@@ -4,7 +4,7 @@ A warning to begin with :
 It is just for my fun and curiosity only.
 Do not ever attempt the below in any of your production code!
 Mocking framework may slow down applications considerably
-and results in unexpected results in non-testing environment.
+and result in unexpected results in non-testing environment.
 
 ---
 
@@ -18,7 +18,7 @@ since it presents an intuitive and elegant way to interact with mocks.
 It also provides flexibility by spying real instances,
 so unit testing can be done effectively.
 
-Mockito is so great,
+Mockito is great,
 but I believe mostly all of us would think Mockito is mainly for the purpose of unit testing only.
 
 Or maybe not?
@@ -182,7 +182,7 @@ due to Mockito's superb stubbing mechanism though,
 it is easy to add behavior to both mocks and real instances.
 
 Although I haven't studied Mockito's implementation thoroughly,
-it is very enjoyable to realize how Mockito's stub api is archived
+it is very enjoyable to realize how Mockito's stub api is achieved
 (like, why `when(mock.call()).thenReturn("result)` actually works.)
 
 It is helpful to write better unit tests as a return, without doubt.
