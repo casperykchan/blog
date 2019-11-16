@@ -29,7 +29,7 @@ Let's find out!
 ## Mockito under the hook
 
 To take a nice sip of Mockito,
-we can first see know how Mockito generally works.
+we can first see how Mockito generally works.
 
 To mock a List, for instance:
 
