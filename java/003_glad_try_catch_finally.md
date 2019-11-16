@@ -18,7 +18,7 @@ public class TryCatchFinallyTest {
             System.out.println("Try");
             throw new IllegalStateException();
         } catch (Exception e) {
-            System.out.println("Catch");
+            System.out.println("Caught: " + e);
             throw new IllegalArgumentException();
         } finally {
             System.out.println("Finally");
