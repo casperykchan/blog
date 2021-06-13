@@ -176,4 +176,4 @@ public class MainApp extends Application {
 }
 ```
 
-Sadly, I will stop exploring this topic any further as the major drawback - reactive variable being mutable - is really a show-stopper. I hope I can elborate further in later updates.
+Sadly, I will stop exploring this topic any further as the major drawback - reactive variable being mutable - is really a show-stopper. I hope I can elaborate more in later updates.
