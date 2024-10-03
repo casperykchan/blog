@@ -1,9 +1,10 @@
-Is Java pass-by-copy or pass-by-reference? Let's find out!
+Is Java pass-by-copy or pass-by-reference?
 
 Quick google on "Is java pass-by-reference?". The answer is mostly yes.
-However interestly, many also argue Java is pass-by-copy.
+However interestingly, many also argue Java is pass-by-copy.
 
-So what is the answer? Let's verify so.
+which one is the correct answer? Let's find out.
+
 Start off with a simple POJO:
 
 ```
@@ -37,6 +38,8 @@ changeId_pass_by_refernce(one)
 System.out.println(one);
 ```
 
+If the method changeId_pass_by_refernce can update the paased parameter (ID "one") it is a proof that it is not pass-by-copy.
+
 But it looks like Java is pass-by-copy as well...?
 
 ```
@@ -51,9 +54,16 @@ changeId_pass_by_copy(one)
 System.out.println(one);
 ```
 
-The answers seem to be contradicting to each other.
+Since the assignment statement 
+```
+one = two;
+```
+has no effect on the passed parameter, it is a proof that it is pass-by-copy.
 
-Weirdly, we need to take a step back to think about how pointer in C++ works.
+
+Weird. The answers seem to be contradicting to each other!
+
+In fact, we need to take a step back to think about how pointer in C++ works.
 It may sound absurd but bear with me.
 
 In C++, pointers (say int*) and references (say int&) are pass-by-reference, while object types are pass-by-copy.
@@ -67,6 +77,7 @@ Turns out, Java is actually "pass by copy **as pointer in form of referenced obj
 WTH does that mean?
 
 To put that in C++ context, it is **pointer with pass-by-copy** (which actually does not exist.)
+
 As an imaginary example:
 
 ```
@@ -87,7 +98,7 @@ Let's try to break down a bit further. Disclaimer ahead,
 strictly speaking this does not represent how things really work under the hood,
 but it may reveal some ideas of object referencing in Java.
 
-First let's revisit the object instantiation:
+Let's revisit the object instantiation:
 
 ```
 ID one = new ID("ONE");
