@@ -3,7 +3,7 @@ Is Java pass-by-copy or pass-by-reference?
 Quick google on "Is java pass-by-reference?". The answer is mostly yes.
 However interestingly, many also argue Java is pass-by-copy.
 
-which one is the correct answer? Let's find out.
+Which one is the correct answer? Let's find out.
 
 Start off with a simple POJO:
 
@@ -38,7 +38,7 @@ changeId_pass_by_refernce(one)
 System.out.println(one);
 ```
 
-If the method changeId_pass_by_refernce can update the paased parameter (ID "one") it is a proof that it is not pass-by-copy.
+The method changeId_pass_by_refernce can update the paased parameter (ID "one") it is a proof that it is not pass-by-copy.
 
 But it looks like Java is pass-by-copy as well...?
 
@@ -58,7 +58,7 @@ Since the assignment statement
 ```
 one = two;
 ```
-has no effect on the passed parameter, it is a proof that it is pass-by-copy.
+has no effects on the passed parameter, it proves that it is pass-by-copy.
 
 
 Weird. The answers seem to be contradicting to each other!
@@ -112,7 +112,7 @@ As an imaginary example:
 ```
 pointer_one = new pointer()
 pointer_one.address = "A0 B0 C0 D0" // 4 Bytes for 32bit; 8 Bytes for 64bit
-Inside the jvm heap, the memory address "A0 B0 C0 D0" points to the allocated memory of the object (ID "ONE")
+//Inside the jvm heap, the memory address "A0 B0 C0 D0" points to the allocated memory of the object (ID "ONE")
 ```
 
 When changeId_copy_of_reference(one) is called, you may view that it is passing pointer_one.
@@ -140,9 +140,7 @@ public static void changeId_copy_of_reference(pointer_one_pass_by_copy) {
 ...
 ```
 
-In case the object is needed, the pointer will be referenced.
-
-It will look like this:
+In case the object is needed, the pointer will be referenced which looks like this:
 
 ```
 ID one = new ID("ONE");
