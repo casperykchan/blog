@@ -1,7 +1,7 @@
-Is Java pass-by-copy or pass-by-reference?
+Is Java pass-by-value or pass-by-reference?
 
 Quick google on "Is java pass-by-reference?". The answer is mostly yes.
-However interestingly, many also argue Java is pass-by-copy.
+However interestingly, many also argue Java is pass-by-value.
 
 Which one is the correct answer? Let's find out.
 
@@ -38,17 +38,17 @@ changeId_pass_by_refernce(one)
 System.out.println(one);
 ```
 
-The method changeId_pass_by_refernce can update the paased parameter (ID "one") it is a proof that it is not pass-by-copy.
+The method changeId_pass_by_refernce can update the paased parameter (ID "one") it is a proof that it is not pass-by-value.
 
-But it looks like Java is pass-by-copy as well...?
+But it looks like Java is pass-by-value as well...?
 
 ```
-public static void changeId_pass_by_copy(ID one) {
+public static void changeId_pass_by_value(ID one) {
     ID two = new ID("TWO");
     one = two;
 }
 
-changeId_pass_by_copy(one)
+changeId_pass_by_value(one)
 
 // ID one = ID{'ONE'}
 System.out.println(one);
@@ -58,7 +58,7 @@ Since the assignment statement
 ```
 one = two;
 ```
-has no effects on the passed parameter, it proves that it is pass-by-copy.
+has no effects on the passed parameter, it proves that it is pass-by-value.
 
 
 Weird. The answers seem to be contradicting to each other!
@@ -66,29 +66,29 @@ Weird. The answers seem to be contradicting to each other!
 In fact, we need to take a step back to think about how pointer in C++ works.
 It may sound absurd but bear with me.
 
-In C++, pointers (say int*) and references (say int&) are pass-by-reference, while object types are pass-by-copy.
+In C++, pointers (say int*) and references (say int&) are pass-by-reference, while object types are pass-by-value.
 
 In Java, direct pointer manipulation is not supported,
 so method calls only accept arguments in form of primitive/object types.
 But is it really passing the object naively by the look of method signature?
 
-Turns out, Java is actually "pass by copy **as pointer in form of referenced object**".
+Turns out, Java is actually "pass by value **as pointer in form of referenced object**".
 
 WTH does that mean?
 
-To put that in C++ context, it is **pointer with pass-by-copy** (which actually does not exist.)
+To put that in C++ context, it is **pointer with pass-by-value** (which actually does not exist.)
 
 As an imaginary example:
 
 ```
-public static void changeId_copy_of_reference(ID* one_pointer_copy) {
+public static void changeId_copy_of_reference(ID* one_pointer_value) {
     ID two = new ID("TWO");
 
-    // this assignment has no effect in Java, because the pointer is passed by copy
-    one_pointer_copy = &two;
+    // this assignment has no effect in Java, because the pointer is passed by value
+    one_pointer_value = &two;
 
     // this assignment works as expected, because the pointer, even if it is a copy, still "references" to object instance "one"
-    one_pointer_copy->id = two.id;
+    one_pointer_value->id = two.id;
 }
 ```
 
@@ -121,22 +121,22 @@ When changeId_copy_of_reference(one) is called, you may view that it is passing 
 changeId_copy_of_reference(pointer_one);
 ```
 
-Note that the pointer_one is actually pass-by-copy:
+Note that the pointer_one is actually pass-by-value:
 
 ```
-public static void changeId_copy_of_reference(pointer_one_pass_by_copy) {
+public static void changeId_copy_of_reference(pointer_one_pass_by_value) {
 ```
 
 Any attempt to directly assigning the copied pointer would not cause any effect at all to the referenced object.
 
 ```
-public static void changeId_copy_of_reference(pointer_one_pass_by_copy) {
+public static void changeId_copy_of_reference(pointer_one_pass_by_value) {
     ID two = new ID("TWO");
     pointer_two = new pointer()
     pointer_two.address = "A1 B1 C1 D1"
     
     // this assignment has no effect (which is expected)
-    pointer_one_pass_by_copy = pointer_two;
+    pointer_one_pass_by_value = pointer_two;
 ...
 ```
 
@@ -147,13 +147,13 @@ ID one = new ID("ONE");
 //pointer_one = new pointer()
 //pointer_one.address = "A0 B0 C0 D0"
 
-public static void changeId_copy_of_reference(pointer_one_pass_by_copy) {
+public static void changeId_copy_of_reference(pointer_one_pass_by_value) {
     ID two = new ID("TWO");
     //pointer_two = new pointer()
     //pointer_two.address = "A1 B1 C1 D1"
     
     // Internal Java pointer referencing
-    //ID one_reference = refernce(pointer_one_pass_by_copy)
+    //ID one_reference = refernce(pointer_one_pass_by_value)
     one_reference.id = two.id;
 }
 ```
